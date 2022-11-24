@@ -42,6 +42,19 @@ namespace AddressBook_System
                 Details.Add(contact);
                 Console.WriteLine("\n---- Contact Added SuccessFully ----");
         }
+        public static void MultiContacts()
+        {
+            AddContact();
+            Console.Write("\nDo You Want To Add Another Contact (Y/N) : ");
+            string check = Console.ReadLine();
+            while (check == "Y" || check == "y")
+            {
+                AddContact();
+                Console.Write("\nDo You Want To Add Another Contact (Y/N) : ");
+                check = Console.ReadLine();
+            }
+        }
+
         public static void DisplayContact()
         {
             foreach (Contact contact in Details)

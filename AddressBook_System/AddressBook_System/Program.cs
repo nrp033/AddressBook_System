@@ -30,6 +30,10 @@
                     AddressBook.RemoveContact();
                     goto Home;
                     return;
+                case 5:
+                    AddressBook.MultiContacts();
+                    goto Home;
+                    return;
 
                 default:
                     Console.WriteLine("\nWrong Input !");
@@ -45,6 +49,7 @@
             Console.WriteLine("2) Display Contact");
             Console.WriteLine("3) Edit Contact");
             Console.WriteLine("4) Remove Contact");
+            Console.WriteLine("5) Add Multiple Contacts");
             Console.WriteLine("\n\nPress 0 To Exit ! ");
             Console.Write("Enter Your Choice    : ");
         }
