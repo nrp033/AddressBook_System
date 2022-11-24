@@ -61,7 +61,73 @@ namespace AddressBook_System
 
 
         }
-            
+
+        public static void EditContact()
+        {
+
+            Console.WriteLine("Please Enter Name of Person to Edit");
+            string FirstName = Console.ReadLine();
+            foreach (Contact contact in Details)
+            {
+                if (contact.FirstName == FirstName)
+                {
+                    editor:
+                    Console.WriteLine("\nChoose From Following List");
+                    Console.WriteLine("\n1) FirstName \n2) Last Name\n" +
+                                        "3) Contact No\n4) E@mail\n" +
+                                        "5) Address\n" +
+                                        "6) City\n7) State\n8) ZipCode");
+                    Console.Write("\nEnter Your Choice  :  ");
+                    int choice = 0;
+                    try { choice = Convert.ToInt32(Console.ReadLine()); }
+                    catch (FormatException e) { Console.WriteLine(e.Message); }
+                    switch (choice)
+                    {
+                        case 1:
+
+                            Console.Write("Enter New First Name : ");
+                            contact.FirstName = Console.ReadLine();
+                            break;
+                        case 2:
+                            Console.Write("New Last Name    : ");
+                            contact.LastName = Console.ReadLine();
+                            break;
+                        case 3:
+                            Console.Write("New Contact No   : ");
+                            contact.MobNumber = Console.ReadLine();
+                            break;
+                        case 4:
+                            Console.Write("New E@mail       : ");
+                            contact.Email = Console.ReadLine();
+                            break;
+                        case 5:
+                            Console.Write("New Address      : ");
+                            contact.Address = Console.ReadLine();
+                            break;
+                        case 6:
+                            Console.Write("New City Name    : ");
+                            contact.City = Console.ReadLine();
+                            break;
+                        case 7:
+                            Console.Write("New State Name   : ");
+                            contact.State = Console.ReadLine();
+                            break;
+                        case 8:
+                            Console.Write("New Zip Code     : ");
+                            contact.Zip = Console.ReadLine();
+                            break;
+
+                        default:
+                            Console.WriteLine("Wrong Input !");
+                            break;
+                    }
+                    Console.WriteLine("\nContact Edited SucessFully  ! \n");
+                }
+                else
+                    Console.WriteLine($"\nContact of {FirstName} Not Avalable !");
+            }
+        }
+
 
     }
     
