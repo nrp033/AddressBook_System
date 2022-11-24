@@ -22,7 +22,9 @@ namespace AddressBook_System
             Console.WriteLine("\n\tEnter The Following Details\n");
 
             Console.Write("First Name       :  ");
-            contact.FirstName = Console.ReadLine();
+            string firstName = Console.ReadLine();
+            bool duplicate = equals(firstName);
+            contact.FirstName = firstName;
 
             Console.Write("Last Name        :  ");
             contact.LastName = Console.ReadLine();
@@ -45,12 +47,25 @@ namespace AddressBook_System
             Console.Write("Enter Zip        :  ");
             contact.Zip = Console.ReadLine();
 
-
-            Details.Add(contact);
-            Console.WriteLine("\n---- Contact Added SuccessFully ----");
+            if (!duplicate)
+            {
+                Details.Add(contact);
+                Console.WriteLine("\n---- Contact Added SuccessFully ----");
+            }
+            else
+            {
+                Console.WriteLine("Contact Can't be Added !");
+                Console.WriteLine("Cannot Add Contact With Duplicate First Name !");
+            }
         }
-          
-        
+
+        private bool equals(string name)
+        {
+            if (this.Details.Any(e => e.FirstName.ToLower() == name.ToLower()))
+                return true;
+            else
+                return false;
+        }
 
         public void Edit(string firstName)
         {
@@ -77,7 +92,15 @@ namespace AddressBook_System
                         case 1:
 
                             Console.Write("Enter New First Name : ");
-                            contact.FirstName = Console.ReadLine();
+                            string FirstName = Console.ReadLine();
+                            bool duplicate = equals(FirstName);
+                            if (duplicate)
+                            {
+                                Console.WriteLine($"Contact {FirstName} Already Present !");
+                                goto editor;
+                            }
+                            else
+                            contact.FirstName = FirstName;
                             break;
                         case 2:
                             Console.Write("New Last Name    : ");
