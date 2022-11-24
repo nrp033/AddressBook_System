@@ -10,46 +10,58 @@
             Menu();
 
             int option = Convert.ToInt32(Console.ReadLine());
-            switch (option)
+             switch (option)
             {
+
                 case 0:
                     break;
+
                 case 1:
-                    AddressBook.AddContact();
+                    Operations.AddAddressBooks();
                     goto Home;
-                    return;
+                    break;
+
                 case 2:
-                    AddressBook.DisplayContact();
+                    Operations.MultiContact();
                     goto Home;
-                    return;
+                    break;
+
                 case 3:
-                    AddressBook.EditContact();
+                    Operations.DisplayContacts();
                     goto Home;
-                    return;
+                    break;
+
                 case 4:
-                    AddressBook.RemoveContact();
+                    Operations.EditContact();
                     goto Home;
-                    return;
+                    break;
+
                 case 5:
-                    AddressBook.MultiContacts();
+                    Operations.RemoveContact();
                     goto Home;
-                    return;
+                    break;
+
+             
+
 
                 default:
-                    Console.WriteLine("\nWrong Input !");
+                    Console.WriteLine(" Wrong Input !");
+                    goto Home;
                     return;
 
-            }
 
-            Console.ReadKey();
+
+
+             }
+
         }
         public static void Menu()
         {
-            Console.WriteLine("\n1) Add Contact");
-            Console.WriteLine("2) Display Contact");
-            Console.WriteLine("3) Edit Contact");
-            Console.WriteLine("4) Remove Contact");
-            Console.WriteLine("5) Add Multiple Contacts");
+            Console.WriteLine("\n1) Add AddressBook");
+            Console.WriteLine("2) Add Contacts");
+            Console.WriteLine("3) Display Contacts");
+            Console.WriteLine("4) Edit Contact");
+            Console.WriteLine("5) Delete Contact");
             Console.WriteLine("\n\nPress 0 To Exit ! ");
             Console.Write("Enter Your Choice    : ");
         }
