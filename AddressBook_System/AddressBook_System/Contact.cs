@@ -12,7 +12,7 @@ namespace AddressBook_System
 
         public string LastName { get; set; }
 
-        public string PhoneNumber { get; set; }
+        public string MobNumber { get; set; }
 
         public string Email { get; set; }
 

@@ -4,7 +4,11 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("---- WELCOME TO ADDRESSBOOK SYSTEM ----");
+            AddressBook.AddContact();
+            AddressBook.DisplayContact();
+
+            Console.ReadKey();
         }
     }
 }
