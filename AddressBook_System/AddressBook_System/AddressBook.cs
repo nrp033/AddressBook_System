@@ -65,7 +65,7 @@ namespace AddressBook_System
         public static void EditContact()
         {
 
-            Console.WriteLine("Please Enter Name of Person to Edit");
+            Console.Write("\nEnter Name of Person to Edit    : ");
             string FirstName = Console.ReadLine();
             foreach (Contact contact in Details)
             {
@@ -80,7 +80,7 @@ namespace AddressBook_System
                     Console.Write("\nEnter Your Choice  :  ");
                     int choice = 0;
                     try { choice = Convert.ToInt32(Console.ReadLine()); }
-                    catch (FormatException e) { Console.WriteLine(e.Message); }
+                    catch (FormatException) { Console.WriteLine("Integer Expected !");goto editor; }
                     switch (choice)
                     {
                         case 1:
@@ -125,6 +125,24 @@ namespace AddressBook_System
                 }
                 else
                     Console.WriteLine($"\nContact of {FirstName} Not Avalable !");
+            }
+        }
+        public static void RemoveContact()
+        {
+            Console.Write("\nPlease Enter Name of Person to Edit  : ");
+            string FirstName = Console.ReadLine();
+
+            foreach (Contact contact in Details)
+            {
+                if (contact.FirstName.ToLower() == FirstName.ToLower())
+                {
+                    Details.Remove(contact);
+                    Console.WriteLine($"\nContact of {FirstName} is Deleted !");
+                    return;
+                }
+                else
+                    Console.WriteLine($"Contact of {FirstName} Not Found ! ");
+
             }
         }
 

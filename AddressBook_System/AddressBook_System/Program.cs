@@ -26,6 +26,10 @@
                     AddressBook.EditContact();
                     goto Home;
                     return;
+                case 4:
+                    AddressBook.RemoveContact();
+                    goto Home;
+                    return;
 
                 default:
                     Console.WriteLine("\nWrong Input !");
@@ -39,7 +43,8 @@
         {
             Console.WriteLine("\n1) Add Contact");
             Console.WriteLine("2) Display Contact");
-            Console.WriteLine("2) Edit Contact");
+            Console.WriteLine("3) Edit Contact");
+            Console.WriteLine("4) Remove Contact");
             Console.WriteLine("\n\nPress 0 To Exit ! ");
             Console.Write("Enter Your Choice    : ");
         }
