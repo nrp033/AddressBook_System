@@ -4,7 +4,6 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("---- WELCOME TO ADDRESSBOOK SYSTEM ----");
 
         Home:
             Menu();
@@ -41,6 +40,10 @@
                     goto Home;
                     break;
 
+                case 6:
+                    Operations.Search();
+                    goto Home;
+                    break;
              
 
 
@@ -57,11 +60,14 @@
         }
         public static void Menu()
         {
+            Console.WriteLine("---- WELCOME TO ADDRESSBOOK SYSTEM ----");
+
             Console.WriteLine("\n1) Add AddressBook");
             Console.WriteLine("2) Add Contacts");
             Console.WriteLine("3) Display Contacts");
             Console.WriteLine("4) Edit Contact");
             Console.WriteLine("5) Delete Contact");
+            Console.WriteLine("6) Search Contact By State or City");
             Console.WriteLine("\n\nPress 0 To Exit ! ");
             Console.Write("Enter Your Choice    : ");
         }

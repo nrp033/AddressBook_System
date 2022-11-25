@@ -9,8 +9,6 @@ namespace AddressBook_System
     internal class AddressBook
     {
         public List<Contact> Details;
-
-
         public AddressBook()
         {
             Details = new  List<Contact>() ;
@@ -141,12 +139,6 @@ namespace AddressBook_System
                     Console.Write("\n\nDo You Want to Edit Another Detail (Y/N) : ");
                     option = Console.ReadLine();
                     if (option == "y" || option == "Y") { goto editor; }
-
-                    else if (option == "N" || option == "n")
-                        Console.WriteLine("Back To Main Menu ! ");
-
-                    else { Console.WriteLine("\n\nWrong Input !"); }
-
                 }
                 else
                     Console.WriteLine($"No Contact With {firstName} Name ");
@@ -212,6 +204,28 @@ namespace AddressBook_System
             }
         }
 
+
+        public string SearchByCity(string place)
+        {
+            List<string> personFounded = new List<string>();
+            foreach (Contact contacts in Details.FindAll(e => (e.City.ToLower().Equals(place.ToLower()))).ToList())
+            {
+                return "Name  : " + contacts.FirstName + "      " + contacts.LastName + "\tCity      : " + contacts.City;
+            }
+            return null;
+
+        }
+        public string SearchByState(string place)
+        {
+            List<string> personFounded = new List<string>();
+            foreach (Contact contacts in Details.FindAll(e => (e.State.ToLower().Equals(place.ToLower()))).ToList())
+            {
+                return "Name  : " + contacts.FirstName + "      " + contacts.LastName + "\tState      : " + contacts.State;
+            }
+
+            return null;
+
+        }
 
 
 

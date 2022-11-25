@@ -8,7 +8,7 @@ namespace AddressBook_System
 {
     internal class Operations
     {
-        public static Dictionary<string,AddressBook> Group=new Dictionary<string,AddressBook>();
+        public static Dictionary<string, AddressBook> Group = new Dictionary<string, AddressBook>();
         public static void AddAddressBooks()
         {
         Multi:
@@ -177,6 +177,71 @@ namespace AddressBook_System
 
             }
         }
+        public static void Search()
+        {
+            SearchByCityOrState(Group);
+        }
+        public static void SearchByCityOrState(Dictionary<string, AddressBook> Group)
+        {
+            if (Group.Count > 0) 
+            {
+                bool check = false;
+            searchpoint:
+                Console.Write("\n1) Serch By City" +
+                    "\n2) Search By State" +
+                    "\n\nEnter Your Choice      :");
+                int option = 0;
+                try { option = Convert.ToInt32(Console.ReadLine()); }
+                catch (FormatException) { Console.WriteLine("\n Integer Expected !");goto searchpoint; }
+                switch (option)
+                {
+                    case 1:
+                        Console.Write("\nEnter the City Name     : ");
+                        string cityname = Console.ReadLine();
+                        foreach (var element in Group)
+                        {
+                            string name = element.Value.SearchByCity(cityname);
+                            if (name != null)
+                            {
+                                Console.WriteLine(name);
+                                check = true;
+                            }
+                        }
+                        if (check == false)
+                        {
+                            Console.WriteLine($"\nNo Contact With the City Name Entered ! ");
+                        }
+                        goto searchpoint;
+                        break;
 
+                        case 2:
+                        Console.Write("\nEnter the State Name    : ");
+                        string stateName = Console.ReadLine();
+                        foreach (var element in Group)
+                        {
+                            string name = element.Value.SearchByState(stateName);
+                            if (name != null)
+                            {
+                                Console.WriteLine(name);
+                                check = true;
+                            }
+                        }
+                        if (check == false)
+                        {
+                            Console.WriteLine($"\nNo Contact With the State Name Entered ! ");
+                        }
+                        goto searchpoint;
+                        break;
+
+                    default:
+                        Console.WriteLine("\nWrong Input !");
+                        break;
+                }
+               
+            }
+            else
+                Console.WriteLine("\n No AddressBook To Store Contact !");
+            
+        }
     }
 }
