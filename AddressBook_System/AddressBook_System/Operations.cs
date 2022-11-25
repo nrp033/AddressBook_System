@@ -9,6 +9,9 @@ namespace AddressBook_System
     internal class Operations
     {
         public static Dictionary<string, AddressBook> Group = new Dictionary<string, AddressBook>();
+
+        public static Dictionary<string, List<string>> cityDisc = new Dictionary<string, List<string>>();
+        public static Dictionary<string, List<string>> StateDisc = new Dictionary<string, List<string>>();
         public static void AddAddressBooks()
         {
         Multi:
@@ -177,71 +180,73 @@ namespace AddressBook_System
 
             }
         }
+
         public static void Search()
         {
-            SearchByCityOrState(Group);
-        }
-        public static void SearchByCityOrState(Dictionary<string, AddressBook> Group)
-        {
-            if (Group.Count > 0) 
+            Search:
+            Console.WriteLine("\n1) Search By City\n2) Search By State ");
+            Console.Write("\n\n Enter Your choice       : ");
+            int area = 0;
+            try { area = Convert.ToInt32(Console.ReadLine()); }
+            catch (FormatException e) { Console.WriteLine(e.Message); }
+
+            switch (area)
             {
-                bool check = false;
-            searchpoint:
-                Console.Write("\n1) Serch By City" +
-                    "\n2) Search By State" +
-                    "\n\nEnter Your Choice      :");
-                int option = 0;
-                try { option = Convert.ToInt32(Console.ReadLine()); }
-                catch (FormatException) { Console.WriteLine("\n Integer Expected !");goto searchpoint; }
-                switch (option)
-                {
-                    case 1:
-                        Console.Write("\nEnter the City Name     : ");
-                        string cityname = Console.ReadLine();
-                        foreach (var element in Group)
-                        {
-                            string name = element.Value.SearchByCity(cityname);
-                            if (name != null)
-                            {
-                                Console.WriteLine(name);
-                                check = true;
-                            }
-                        }
-                        if (check == false)
-                        {
-                            Console.WriteLine($"\nNo Contact With the City Name Entered ! ");
-                        }
-                        goto searchpoint;
-                        break;
+                case 1:
+                    Console.Write("\nEnter City Name      :  ");
+                    cityDisc = FindByCityOrState(Group, cityDisc);
+                    displayPersonDisc(cityDisc);
+                    goto Search;
+                    break;
+                case 2:
+                    Console.Write("\nEnter State Name      :  ");
+                    StateDisc = FindByCityOrState(Group, StateDisc);
+                    displayPersonDisc(StateDisc);
+                    goto Search;
+                    break;
 
-                        case 2:
-                        Console.Write("\nEnter the State Name    : ");
-                        string stateName = Console.ReadLine();
-                        foreach (var element in Group)
-                        {
-                            string name = element.Value.SearchByState(stateName);
-                            if (name != null)
-                            {
-                                Console.WriteLine(name);
-                                check = true;
-                            }
-                        }
-                        if (check == false)
-                        {
-                            Console.WriteLine($"\nNo Contact With the State Name Entered ! ");
-                        }
-                        goto searchpoint;
-                        break;
-
-                    default:
-                        Console.WriteLine("\nWrong Input !");
-                        break;
-                }
-               
+                default:
+                    Console.WriteLine("Wrong Input ! ");
+                    break;
             }
-            else
-                Console.WriteLine("\n No AddressBook To Store Contact !");
-            
+
         }
+
+        private static Dictionary<string, List<string>> FindByCityOrState(Dictionary<string, AddressBook> group, Dictionary<string, List<string>> areaDisc)
+        {
+            string findPlace = Console.ReadLine();
+            foreach (var element in group)
+            {
+                List<string> listOfPersonsInPlace = element.Value.findPersons(findPlace);
+                foreach (var name in listOfPersonsInPlace)
+                {
+                    if (!areaDisc.ContainsKey(findPlace))
+                    {
+                        List<string> personList = new List<string>();
+                        personList.Add(name);
+                        areaDisc.Add(findPlace, personList);
+                    }
+                    else
+                    {
+                        areaDisc[findPlace].Add(name);
+                    }
+                }
+            }
+            return areaDisc;
+        }
+
+        public static void displayPersonDisc(Dictionary<string, List<string>> areaDisc)
+        {
+            foreach (var index in areaDisc)
+            {
+
+                foreach (var personName in index.Value)
+                {
+                    Console.WriteLine("\nName : " + personName + "\tArea : " + index.Key);
+                }
+            }
+        }
+
+
     }
 }

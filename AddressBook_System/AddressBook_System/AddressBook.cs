@@ -204,27 +204,23 @@ namespace AddressBook_System
             }
         }
 
-
-        public string SearchByCity(string place)
+        public List<string> findPersons(string place)
         {
             List<string> personFounded = new List<string>();
             foreach (Contact contacts in Details.FindAll(e => (e.City.ToLower().Equals(place.ToLower()))).ToList())
             {
-                return "Name  : " + contacts.FirstName + "      " + contacts.LastName + "\tCity      : " + contacts.City;
+                string name = contacts.FirstName + " " + contacts.LastName;
+                personFounded.Add(name);
             }
-            return null;
-
-        }
-        public string SearchByState(string place)
-        {
-            List<string> personFounded = new List<string>();
-            foreach (Contact contacts in Details.FindAll(e => (e.State.ToLower().Equals(place.ToLower()))).ToList())
+            if (personFounded.Count == 0)
             {
-                return "Name  : " + contacts.FirstName + "      " + contacts.LastName + "\tState      : " + contacts.State;
+                foreach (Contact contacts in Details.FindAll(e => (e.State.ToLower().Equals(place.ToLower()))).ToList())
+                {
+                    string name = contacts.FirstName + " " + contacts.LastName;
+                    personFounded.Add(name);
+                }
             }
-
-            return null;
-
+            return personFounded;
         }
 
 
