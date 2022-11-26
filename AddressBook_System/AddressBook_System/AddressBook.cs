@@ -223,6 +223,26 @@ namespace AddressBook_System
             return personFounded;
         }
 
+        public void SortByName()
+        { 
+            bool check=false;
+            List<string> sortList = new List<string>();
+            foreach (Contact contact in Details)
+            {
+                string sort = contact.toString();
+                sortList.Add(sort);
+                check = true;
+            }
+            sortList.Sort();
+            foreach (string sort in sortList)
+            {
+                Console.WriteLine(sort);
+            }
+            if (check == false)
+            {
+                Console.WriteLine("\n No Contact Available in AddressBook !");
+            }
+        }
 
 
 

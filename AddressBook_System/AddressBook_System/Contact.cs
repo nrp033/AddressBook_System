@@ -23,6 +23,11 @@ namespace AddressBook_System
         public string State { get; set; }
 
         public string Zip { get; set; }
+
+        public string toString()
+        {
+            return "Name : " + FirstName + "  " + LastName + "\tContact No.: " + MobNumber + "\tEmail : " + Email + "\tAddress : " + Address + "\tCity : " + City + "\tState : " + State + "\tZipCode : " + Zip;
+        }
        
 
     }

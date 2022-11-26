@@ -257,7 +257,38 @@ namespace AddressBook_System
             }
             Console.WriteLine("\nTotal Count Of Person  : "+count);
         }
+        public static void Sort()
+        {
+            if (Group.Count != 0)
+            {
+                Choose:
+                listAddressBook();
+                string choice;
+                Console.WriteLine("\nEnter AddressBook To Sort Contacts     : ");
+                string AdBookName = Console.ReadLine();
+                if (!Group.ContainsKey(AdBookName))
+                {
+                    Console.Write("\nAddress book " + AdBookName + " not found \n\nAvailable names are : \n");
+                    foreach (KeyValuePair<string, AddressBook> check in Group)
+                    {
+                        Console.Write("* " + check.Key + "  ");
 
+                    }
+                    goto Choose;
+                }
+                else
+                {
+                    Group[AdBookName].SortByName();
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nNo AddressBook Available !");
+
+                Console.ReadKey();
+            }
+          
+        }
 
     }
 }
