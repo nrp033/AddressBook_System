@@ -194,14 +194,18 @@ namespace AddressBook_System
             {
                 case 1:
                     Console.Write("\nEnter City Name      :  ");
-                    cityDisc = FindByCityOrState(Group, cityDisc);
-                    displayPersonDisc(cityDisc);
+                    string cityname = Console.ReadLine();
+
+                    cityDisc = FindByCityOrState(Group, cityDisc,cityname);
+                    displayPersonDisc(cityDisc,cityname);
                     goto Search;
                     break;
                 case 2:
                     Console.Write("\nEnter State Name      :  ");
-                    StateDisc = FindByCityOrState(Group, StateDisc);
-                    displayPersonDisc(StateDisc);
+                    string statename = Console.ReadLine();
+
+                    StateDisc = FindByCityOrState(Group, StateDisc,statename);
+                    displayPersonDisc(StateDisc,statename);
                     goto Search;
                     break;
 
@@ -212,9 +216,8 @@ namespace AddressBook_System
 
         }
 
-        private static Dictionary<string, List<string>> FindByCityOrState(Dictionary<string, AddressBook> group, Dictionary<string, List<string>> areaDisc)
+        private static Dictionary<string, List<string>> FindByCityOrState(Dictionary<string, AddressBook> group, Dictionary<string, List<string>> areaDisc,string findPlace)
         {
-            string findPlace = Console.ReadLine();
             foreach (var element in group)
             {
                 List<string> listOfPersonsInPlace = element.Value.findPersons(findPlace);
@@ -228,6 +231,7 @@ namespace AddressBook_System
                     }
                     else
                     {
+
                         areaDisc[findPlace].Add(name);
                     }
                 }
@@ -235,16 +239,23 @@ namespace AddressBook_System
             return areaDisc;
         }
 
-        public static void displayPersonDisc(Dictionary<string, List<string>> areaDisc)
+        public static void displayPersonDisc(Dictionary<string, List<string>> areaDisc,string areaname)
         {
+            int count = 0;
             foreach (var index in areaDisc)
             {
 
                 foreach (var personName in index.Value)
                 {
-                    Console.WriteLine("\nName : " + personName + "\tArea : " + index.Key);
+                    if (index.Key == areaname)
+                    {
+                        Console.WriteLine("\nName : " + personName + "\tArea : " + index.Key);
+                        count++;
+                    }
+                    
                 }
             }
+            Console.WriteLine("\nTotal Count Of Person  : "+count);
         }
 
 
