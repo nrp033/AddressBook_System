@@ -326,7 +326,15 @@ namespace AddressBook_System
         {
             FileReadORWrite.ReadFromCSV();
         }
-        
+        public void WriteToJSON_File()
+        {
+            FileReadORWrite.WriteToJSON(this.Details);
+        }
+        public void ReadFromJSON_File()
+        {
+            FileReadORWrite.ReadFromJSON();
+        }
+
 
 
     }

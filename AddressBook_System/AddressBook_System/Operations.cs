@@ -134,7 +134,7 @@ namespace AddressBook_System
                 {
                     Group[AdBookName].show();
 
-                    Console.Write("Enter first name to edit contact     :  ");
+                    Console.Write("\nEnter first name to edit contact     :  ");
                     string name = Console.ReadLine();
                     Group[AdBookName].Edit(name);
 
@@ -333,7 +333,7 @@ namespace AddressBook_System
                 Choose:
                 listAddressBook();
                 string choice;
-                Console.WriteLine("\nEnter AddressBook To Sort Contacts     : ");
+                Console.WriteLine("\nEnter AddressBook To Read/Write Contacts     : ");
                 string AdBookName = Console.ReadLine();
                 if (!Group.ContainsKey(AdBookName))
                 {
@@ -348,10 +348,12 @@ namespace AddressBook_System
                 else
                 {
                 Menu:
-                    Console.WriteLine("\n1) Write To Text File" +
+                    Console.Write("\n\n1) Write To Text File" +
                         "\n2) Read From Text File" +
                         "\n3) Write To CSV File" +
                         "\n4) Read From CSV File" +
+                        "\n5) Write To JSON File" +
+                        "\n6) Read From JSON File" +
                         "\n\nEnter Your Choice      : ");
                     int option = 0;
                     try { option = Convert.ToInt32(Console.ReadLine()); }
@@ -373,6 +375,12 @@ namespace AddressBook_System
                             return;
                         case 4:
                             Group[AdBookName].ReadFromCSV_File();
+                            goto Menu;
+                        case 5:
+                            Group[AdBookName].WriteToJSON_File();
+                            goto Menu;
+                        case 6:
+                            Group[AdBookName].ReadFromJSON_File();
                             goto Menu;
                             return;
                         default:

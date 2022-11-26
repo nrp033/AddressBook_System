@@ -1,10 +1,13 @@
 ﻿using CsvHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace AddressBook_System
 {
@@ -12,6 +15,7 @@ namespace AddressBook_System
     {
         public static string path = @"C:\Users\NRP\Desktop\BATCH_207\GIT\AddressBook_System\AddressBook_System\AddressBook_System\DataFiles\Contacts.txt";
         public static string csvpath = @"C:\Users\NRP\Desktop\BATCH_207\GIT\AddressBook_System\AddressBook_System\AddressBook_System\DataFiles\Contacts.csv";
+        public static string jsonpath = @"C:\Users\NRP\Desktop\BATCH_207\GIT\AddressBook_System\AddressBook_System\AddressBook_System\DataFiles\Contacts.json";
 
         // Writes the file.
         public static void WriteFile(List<Contact> contacts)
@@ -102,8 +106,6 @@ namespace AddressBook_System
             }
 
         }
-
-
         //alternate way to read from csv file
 
         //public static void ReadFromCsvFile()
@@ -122,6 +124,52 @@ namespace AddressBook_System
         //    }
 
         //}
+
+
+        // Writes the into json file.
+
+        public static void WriteToJSON(List<Contact> contacts)
+        {
+            if (File.Exists(jsonpath))
+            {
+                JsonSerializer jsonSerializer = new JsonSerializer();
+                using (StreamWriter streamWriter = new StreamWriter(jsonpath))
+                using (JsonWriter writer = new JsonTextWriter(streamWriter))
+                {
+                    jsonSerializer.Serialize(writer, contacts);
+                }
+                Console.WriteLine("\n Data SucessFully Written Into CSV File !");
+            }
+            else
+            {
+                Console.WriteLine("No File Beacuse Of Wrong Path Or File Name");
+            }
+        }
+
+        // Reads from json file.
+        public static void ReadFromJSON()
+        {
+            if (File.Exists(jsonpath))
+            {
+                List<Contact> contacts = JsonConvert.DeserializeObject<List<Contact>>(File.ReadAllText(jsonpath));
+                foreach (Contact contact in contacts)
+                {
+                    Console.Write("\n" + contact.FirstName);
+                    Console.Write("\n" + contact.LastName);
+                    Console.Write("\n" + contact.MobNumber);
+                    Console.Write("\n" + contact.Email);
+                    Console.Write("\n" + contact.Address);
+                    Console.Write("\n" + contact.City);
+                    Console.Write("\n" + contact.State);
+                    Console.Write("\n" + contact.Zip);
+                    
+                }
+            }
+            else
+            {
+                Console.WriteLine("No File Beacuse Of Wrong Path Or File Name");
+            }
+        }
 
     }
 }
