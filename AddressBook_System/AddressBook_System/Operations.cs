@@ -216,9 +216,9 @@ namespace AddressBook_System
 
         }
 
-        private static Dictionary<string, List<string>> FindByCityOrState(Dictionary<string, AddressBook> group, Dictionary<string, List<string>> areaDisc,string findPlace)
+        private static Dictionary<string, List<string>> FindByCityOrState(Dictionary<string, AddressBook> Group, Dictionary<string, List<string>> areaDisc,string findPlace)
         {
-            foreach (var element in group)
+            foreach (var element in Group)
             {
                 List<string> listOfPersonsInPlace = element.Value.findPersons(findPlace);
                 foreach (var name in listOfPersonsInPlace)
@@ -257,7 +257,7 @@ namespace AddressBook_System
             }
             Console.WriteLine("\nTotal Count Of Person  : "+count);
         }
-        public static void Sort()
+        public static void SortAll()
         {
             if (Group.Count != 0)
             {
@@ -278,7 +278,43 @@ namespace AddressBook_System
                 }
                 else
                 {
-                    Group[AdBookName].SortByName();
+                    sorter:
+                    Console.Write("\n1) Sort By Name" +
+                                       "\n2) Sort By City" +
+                                       "\n3) Sort By State" +
+                                       "\n4) Sort By Zip" +
+                                       "\n\nEnter Your Choice  : ");
+
+                    int option = 0;
+                    try { option = Convert.ToInt32(Console.ReadLine()); }
+                    catch (FormatException) { Console.WriteLine("\n Input Should Be Integer !"); goto sorter; }
+
+                    switch (option)
+                    {
+                        case 1:
+                            Group[AdBookName].SortByName();
+                            goto sorter;
+                            break;
+
+                        case 2:
+                            Group[AdBookName].SortByCity();
+                            goto sorter;
+                            break;
+                        case 3:
+                            Group[AdBookName].SortByState();
+                            goto sorter;
+                            break;
+                        case 4:
+                            Group[AdBookName].SortByZip();
+                            goto sorter;
+                            break;
+
+                        default:
+                            Console.WriteLine("\n Wrong Input !");
+
+                            break;
+
+                    }
                 }
             }
             else

@@ -26,7 +26,7 @@ namespace AddressBook_System
 
         public string toString()
         {
-            return "Name : " + FirstName + "  " + LastName + "\tContact No.: " + MobNumber + "\tEmail : " + Email + "\tAddress : " + Address + "\tCity : " + City + "\tState : " + State + "\tZipCode : " + Zip;
+            return "\nName : " + FirstName + "  " + LastName + "\tContact No.: " + MobNumber + "\tEmail : " + Email + "\tAddress : " + Address + "\tCity : " + City + "\tState : " + State + "\tZipCode : " + Zip;
         }
        
 

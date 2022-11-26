@@ -46,7 +46,7 @@
                     break;
 
                 case 7:
-                    Operations.Sort();
+                    Operations.SortAll();
                     goto Home;
                     break;
 

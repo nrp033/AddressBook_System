@@ -244,6 +244,59 @@ namespace AddressBook_System
             }
         }
 
+        // Sort methode for sort entites in adress book by city.
+        public void SortByCity()
+        {
+            bool check = false;
+
+            Details.Sort(new Comparison<Contact>((a, b) => string.Compare(a.City, b.City)));
+            Console.WriteLine("\nContacts after Sorting By City : \n");
+            foreach (Contact contact in Details)
+            {
+                string sort = contact.toString();
+                Console.WriteLine(sort);
+                check = true;
+
+            }
+        }
+
+        // Sort methode for sort entites in adress book by state.
+        public void SortByState()
+        {
+            bool check = false;
+
+            Details.Sort(new Comparison<Contact>((a, b) => string.Compare(a.State, b.State)));
+            Console.WriteLine("\nContacts After Aorting By State : \n");
+            foreach (Contact contact in Details)
+            {
+                string sort = contact.toString();
+                Console.WriteLine(sort); check = true;
+
+            }
+            if (check == false)
+            {
+                Console.WriteLine("\n No Contact Available in AddressBook !");
+            }
+        }
+
+        // Sort methode for sort entites in adress book by zip.
+        public void SortByZip()
+        {
+            bool check = false;
+
+            Details.Sort(new Comparison<Contact>((a, b) => string.Compare(a.Zip, b.Zip)));
+            Console.WriteLine("\nContacts After Sorting By Zip : \n");
+            foreach (Contact contact in Details)
+            {
+                string sort = contact.toString();
+                Console.WriteLine(sort);
+                check = true;
+            }
+            if (check == false)
+            {
+                Console.WriteLine("\n No Contact Available in AddressBook !");
+            }
+        }
 
 
 
