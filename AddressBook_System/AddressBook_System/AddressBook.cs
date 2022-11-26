@@ -14,6 +14,7 @@ namespace AddressBook_System
             Details = new  List<Contact>() ;
         }
 
+        //Method to Add Contact
         public void AddContact()
         {
             Contact contact = new Contact();
@@ -57,6 +58,7 @@ namespace AddressBook_System
             }
         }
 
+        //overriding equals method to avoid Duplicate Entries in AddressBook
         private bool equals(string name)
         {
             if (this.Details.Any(e => e.FirstName.ToLower() == name.ToLower()))
@@ -65,6 +67,7 @@ namespace AddressBook_System
                 return false;
         }
 
+        //Method to Editing Existing Contact Details From Addressbook
         public void Edit(string firstName)
         {
             //Contact contact = null;
@@ -146,6 +149,7 @@ namespace AddressBook_System
 
         }
 
+        //Method to Delete Contact From AddressBook
         public void delete(string name)
         {
             bool status = false;
@@ -172,6 +176,7 @@ namespace AddressBook_System
 
         }
 
+        //method to print Contacts From AddressBook
         public void displayContact()
         {
             if (Details.Count > 0)
@@ -195,6 +200,7 @@ namespace AddressBook_System
             else { Console.WriteLine("\nNo Contact To Display !"); }
         }
 
+        //Method to only show First name and Last Name of Contact
         public void show()
         {
             foreach (Contact contact in Details)
@@ -204,6 +210,7 @@ namespace AddressBook_System
             }
         }
 
+        //method to return list of Contacts from perticular city or state
         public List<string> findPersons(string place)
         {
             List<string> personFounded = new List<string>();
@@ -223,6 +230,7 @@ namespace AddressBook_System
             return personFounded;
         }
 
+        //method to sort contact by name
         public void SortByName()
         { 
             bool check=false;
@@ -298,7 +306,14 @@ namespace AddressBook_System
             }
         }
 
-
+        public void WriteToTXT_File()
+        {
+            FileReadORWrite.WriteFile(this.Details);
+        }
+        public void ReadFromTXt_File()
+        {
+            FileReadORWrite.readFile();
+        }
 
 
 

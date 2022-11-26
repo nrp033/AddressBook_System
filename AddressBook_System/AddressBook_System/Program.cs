@@ -50,6 +50,11 @@
                     goto Home;
                     break;
 
+                case 8:
+                    Operations.ReadAndWrite();
+                    goto Home;
+                    break;
+
                 default:
                     Console.WriteLine(" Wrong Input !");
                     goto Home;
@@ -72,6 +77,7 @@
             Console.WriteLine("5) Delete Contact");
             Console.WriteLine("6) Search Contact By State or City");
             Console.WriteLine("7) View Sorted Contacts");
+            Console.WriteLine("8) Read And Write Into File");
             Console.WriteLine("\n\nPress 0 To Exit ! ");
             Console.Write("Enter Your Choice    : ");
         }

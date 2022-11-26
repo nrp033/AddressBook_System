@@ -1,0 +1,6 @@
+﻿
+Name : Nitin  Pawar	Contact No.: 9421506122	Email : nitin@gmail.com	Address : pawar galli	City : Latur	State : Maharashtra	ZipCode : 413520
+
+Name : Sachin  Pawar	Contact No.: 7867687676	Email : sachin@gmail.com	Address : shivaji chowk	City : Ausa	State : Maharashtra	ZipCode : 454676
+
+Name : Vaishnavi  Pawar	Contact No.: 8768768766	Email : vpawar@gmail.com	Address : bhosari	City : Pune	State : Tamil Nadu	ZipCode : 564465

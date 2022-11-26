@@ -326,5 +326,57 @@ namespace AddressBook_System
           
         }
 
+        public static void ReadAndWrite()
+        {
+            if (Group.Count != 0)
+            {
+            Choose:
+                listAddressBook();
+                string choice;
+                Console.WriteLine("\nEnter AddressBook To Sort Contacts     : ");
+                string AdBookName = Console.ReadLine();
+                if (!Group.ContainsKey(AdBookName))
+                {
+                    Console.Write("\nAddress book " + AdBookName + " not found \n\nAvailable names are : \n");
+                    foreach (KeyValuePair<string, AddressBook> check in Group)
+                    {
+                        Console.Write("* " + check.Key + "  ");
+
+                    }
+                    goto Choose;
+                }
+                else
+                {
+                Menu:
+                    Console.WriteLine("\n1) Write To Text File" +
+                        "\n2) Read From Text File" +
+                        "\n\nEnter Your Choice      : ");
+                    int option = 0;
+                    try { option = Convert.ToInt32(Console.ReadLine()); }
+                    catch (FormatException) { Console.WriteLine("\n Integer Expected !"); goto Menu; }
+
+                    switch (option)
+                    {
+                        case 1:
+                            Group[AdBookName].WriteToTXT_File();
+                            goto Menu;
+                            return;
+                        case 2:
+                            Group[AdBookName].ReadFromTXt_File();
+                            goto Menu;
+                            return;
+                        default:
+                            Console.WriteLine("\n Wrong input");
+                            return;
+
+                    }
+
+                }
+
+
+            }
+        }
+
+
     }
 }
