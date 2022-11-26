@@ -7,9 +7,10 @@
 
         Home:
             Menu();
-
-            int option = Convert.ToInt32(Console.ReadLine());
-             switch (option)
+                        int option = 0;
+            try{ option=Convert.ToInt32(Console.ReadLine());}
+            catch (FormatException) { Console.WriteLine("\nWrong Input  !");goto Home; }             
+            switch (option)
             {
 
                 case 0:
