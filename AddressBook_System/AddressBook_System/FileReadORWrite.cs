@@ -142,7 +142,7 @@ namespace AddressBook_System
             }
             else
             {
-                Console.WriteLine("No File Beacuse Of Wrong Path Or File Name");
+                Console.WriteLine("\nFile Not Found !");
             }
         }
 
@@ -167,7 +167,7 @@ namespace AddressBook_System
             }
             else
             {
-                Console.WriteLine("No File Beacuse Of Wrong Path Or File Name");
+                Console.WriteLine("\nFile Not Found !");
             }
         }
 
