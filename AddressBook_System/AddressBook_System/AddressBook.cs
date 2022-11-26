@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +10,8 @@ namespace AddressBook_System
 {
     internal class AddressBook
     {
+        public static string csvpath = @"C:\Users\NRP\Desktop\BATCH_207\GIT\AddressBook_System\AddressBook_System\AddressBook_System\DataFiles\Contacts.csv";
+
         public List<Contact> Details;
         public AddressBook()
         {
@@ -314,7 +318,15 @@ namespace AddressBook_System
         {
             FileReadORWrite.readFile();
         }
-
+        public void WriteToCSV_File()
+        {
+            FileReadORWrite.WriteToCSV(this.Details);
+        }
+        public void ReadFromCSV_File()
+        {
+            FileReadORWrite.ReadFromCSV();
+        }
+        
 
 
     }

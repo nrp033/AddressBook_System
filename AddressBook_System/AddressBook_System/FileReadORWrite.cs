@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,7 @@ namespace AddressBook_System
     internal class FileReadORWrite
     {
         public static string path = @"C:\Users\NRP\Desktop\BATCH_207\GIT\AddressBook_System\AddressBook_System\AddressBook_System\DataFiles\Contacts.txt";
+        public static string csvpath = @"C:\Users\NRP\Desktop\BATCH_207\GIT\AddressBook_System\AddressBook_System\AddressBook_System\DataFiles\Contacts.csv";
 
         // Writes the file.
         public static void WriteFile(List<Contact> contacts)
@@ -23,7 +26,7 @@ namespace AddressBook_System
                     }
                     streamWriter.Close();
                 }
-                Console.WriteLine("\nSucessFully write into txt file");
+                Console.WriteLine("\n Data SucessFully Written Into Text File !");
                 Console.ReadLine();
             }
             else
@@ -52,5 +55,73 @@ namespace AddressBook_System
                 Console.WriteLine("\nFile Not Found !");
             }
         }
+
+        public static void WriteToCSV(List<Contact> contacts)
+        {
+            if (File.Exists(csvpath))
+            {
+                AddressBook addressBook = new AddressBook();
+                
+                using (StreamWriter sw = new StreamWriter(csvpath))
+                using (CsvWriter csv = new CsvWriter(sw, CultureInfo.InvariantCulture))
+                {
+                   
+                    csv.WriteRecords(contacts);
+                    Console.WriteLine("\n Data SucessFully Written Into CSV File !");
+                }
+
+            }
+            else
+                Console.WriteLine("\nFile Not Found !");
+
+        }
+
+
+        public static void ReadFromCSV()
+        {
+
+            using (StreamReader sr = new StreamReader(csvpath))
+            using (CsvReader reader = new CsvReader(sr, CultureInfo.InvariantCulture))
+            {
+                var records = reader.GetRecords<Contact>().ToList();
+
+                Console.WriteLine("Reading records from address book csv file...");
+                foreach (Contact item in records)
+                {
+                    Console.Write(item.FirstName);
+                    Console.Write("\t" + item.LastName);
+                    Console.Write("\t" + item.MobNumber);
+                    Console.Write("\t" + item.Email);
+                    Console.Write("\t" + item.Address);
+                    Console.Write("\t" + item.City);
+                    Console.Write("\t" + item.State);
+                    Console.Write("\t" + item.Zip);
+
+                    Console.WriteLine();
+                }
+            }
+
+        }
+
+
+        //alternate way to read from csv file
+
+        //public static void ReadFromCsvFile()
+        //{
+        //    string path = @"";
+        //    string[] data = File.ReadAllLines(path);
+        //    string[] header = { "First Name", "LastName", "Address", "City", "State", "Zip Code", "Phone Number", "Email" };
+
+        //    for (int i = 0; i < data.Length; i++)
+        //    {
+        //        string[] person = data[i].Split(",");
+        //        for (int j = 0; j < person.Length; j++)
+        //        {
+        //            Console.WriteLine(header[j] + " : " + person[j]);
+        //        }
+        //    }
+
+        //}
+
     }
 }

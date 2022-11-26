@@ -330,7 +330,7 @@ namespace AddressBook_System
         {
             if (Group.Count != 0)
             {
-            Choose:
+                Choose:
                 listAddressBook();
                 string choice;
                 Console.WriteLine("\nEnter AddressBook To Sort Contacts     : ");
@@ -350,6 +350,8 @@ namespace AddressBook_System
                 Menu:
                     Console.WriteLine("\n1) Write To Text File" +
                         "\n2) Read From Text File" +
+                        "\n3) Write To CSV File" +
+                        "\n4) Read From CSV File" +
                         "\n\nEnter Your Choice      : ");
                     int option = 0;
                     try { option = Convert.ToInt32(Console.ReadLine()); }
@@ -363,6 +365,14 @@ namespace AddressBook_System
                             return;
                         case 2:
                             Group[AdBookName].ReadFromTXt_File();
+                            goto Menu;
+                            return;
+                        case 3:
+                            Group[AdBookName].WriteToCSV_File();
+                            goto Menu;
+                            return;
+                        case 4:
+                            Group[AdBookName].ReadFromCSV_File();
                             goto Menu;
                             return;
                         default:
